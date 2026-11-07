@@ -5099,7 +5099,7 @@ class Feed_Parser_ActivityPub extends Feed_Parser_V2 {
 	 * @return     bool    Whether the comment is approved.
 	 */
 	public function pre_comment_approved( $approved, $commentdata ) {
-		if ( is_string( $approved ) && 'activitypub' === $commentdata['comment_meta']['protocol'] ) {
+		if ( is_string( $approved ) && isset( $commentdata['comment_meta']['protocol'] ) && 'activitypub' === $commentdata['comment_meta']['protocol'] ) {
 			// If the author is someone we already follow.
 			$user_feed = User_Feed::get_by_url( $commentdata['comment_author_url'] );
 			if ( $user_feed instanceof User_Feed ) {
